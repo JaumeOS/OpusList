@@ -14,13 +14,19 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
 
 public class MainForm extends javax.swing.JFrame {
-    private static final java.lang.reflect.Type LIST_OF_OBRA_TYPE = new TypeToken<List<Obra>>() {}.getType();
+
+    private static final java.lang.reflect.Type LIST_OF_OBRA_TYPE = new TypeToken<List<Obra>>() {
+    }.getType();
     public static ArrayList<Obra> obras = new ArrayList<>();
+    private static JList<Obra> lstObras;
 
     private boolean confirmSave = false;
     private boolean dataChanged = false;
@@ -30,8 +36,30 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
+        lstObras = new JList<Obra>();
+        jScrollPane1.setViewportView(lstObras);
+        lstObras.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                //lstObrasValueChanged(evt);
+            }
+        });
     }
 
+//    private void lstObrasValueChanged(javax.swing.event.ListSelectionEvent evt) {
+//        Obra selectedObra = lstObras.getSelectedValue();
+//        if (selectedObra != null) {
+//            for (Obra o : obras) {
+//                try {
+//                    BufferedImage bufferedImage = ImageIO.read(new File(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\" + o.getImatge()));
+//                    ImageIcon icon = resizeImageIcon(bufferedImage, lblImage.getWidth(), lblImage.getHeight());
+//                    lblImage.setIcon(icon);
+//                    txtImagePath.setText(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\" + o.getImatge());
+//                } catch (IOException ioe) {
+//                    ioe.printStackTrace();
+//                }
+//            }
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,10 +75,7 @@ public class MainForm extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnInsert = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        lblImage = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstObras = new javax.swing.JList<>();
-        txtImagePath = new javax.swing.JTextField();
         mnuMenuBar = new javax.swing.JMenuBar();
         mnuCRUD = new javax.swing.JMenu();
         mniRead = new javax.swing.JMenuItem();
@@ -76,6 +101,11 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -98,28 +128,7 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        lblImage.setText("Image preview");
-
-        lstObras.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstObrasValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(lstObras);
-
-        txtImagePath.setText("Image Path");
-        txtImagePath.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImagePathActionPerformed(evt);
-            }
-        });
-
         mnuCRUD.setText("CRUD");
-        mnuCRUD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCRUDActionPerformed(evt);
-            }
-        });
 
         mniRead.setText("Read");
         mniRead.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +171,7 @@ public class MainForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,35 +183,22 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                        .addGap(26, 26, 26))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtImagePath)
-                        .addContainerGap())))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInsert)
-                    .addComponent(btnRead)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete)
-                    .addComponent(btnSave))
-                .addGap(18, 18, 18)
+                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 76, Short.MAX_VALUE)
-                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113)
-                        .addComponent(txtImagePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(btnInsert, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnUpdate)
+                        .addComponent(btnDelete)
+                        .addComponent(btnSave)
+                        .addComponent(btnRead)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -209,21 +206,17 @@ public class MainForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCRUDActionPerformed
-
-    }//GEN-LAST:event_mnuCRUDActionPerformed
-
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         Gson gson = new Gson();
         try {
             JsonReader reader = new JsonReader(new FileReader(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\data\\obres.json"));
             obras = gson.fromJson(reader, LIST_OF_OBRA_TYPE);
 
-            DefaultListModel obrasListModel = new DefaultListModel();
+            DefaultListModel<Obra> usersListModel = new DefaultListModel<Obra>();
             for (Obra o : obras) {
-                obrasListModel.addElement(o.toString() + System.lineSeparator());
+                usersListModel.addElement(o);
             }
-            lstObras.setModel(obrasListModel);
+            lstObras.setModel(usersListModel);
         } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
         }
@@ -242,35 +235,13 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniUpdateActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        InsertDialog saveDialog = new InsertDialog(this, true);
-        saveDialog.setVisible(true);
-
-//        ConfirmSaveDialog saveDialog = new ConfirmSaveDialog(this, true);
-//        saveDialog.setVisible(true);
-//
+        InsertDialog insertDialog = new InsertDialog(this, true);
+        insertDialog.setVisible(true);
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void lstObrasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstObrasValueChanged
-        String obraName = lstObras.getSelectedValue();
-        String[] splitter = obraName.split(", ");
-        String imageName = splitter[2];
-        try {
-            BufferedImage bufferedImage = ImageIO.read(new File(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\" + imageName));
-            ImageIcon icon = resizeImageIcon(bufferedImage, lblImage.getWidth(), lblImage.getHeight());
-            lblImage.setIcon(icon);
-            txtImagePath.setText(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\" + imageName);
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }//GEN-LAST:event_lstObrasValueChanged
-
-    private void txtImagePathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImagePathActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtImagePathActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         btnRead.doClick();
@@ -281,12 +252,21 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_mniInsertActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        User selectedUser = lstUsers.getSelectedValue();
-        users.remove(selectedUser);
-
-        
-        dataChanged = true;
+        DeleteDialog deleteDialog = new DeleteDialog(this, true);
+        deleteDialog.setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        UpdateDialog updateDialog = new UpdateDialog(this, true);
+        updateDialog.setVisible(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void UpdateListModel() {
+        DefaultListModel obrasListModel = new DefaultListModel();
+        for (Obra o : obras) {
+            obrasListModel.addElement(o);
+        }
+    }
 
     ImageIcon resizeImageIcon(BufferedImage originalImage, int desiredWidth, int desiredHeight) {
         int newHeight;
@@ -357,14 +337,11 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblImage;
-    private javax.swing.JList<String> lstObras;
     private javax.swing.JMenuItem mniDelette;
     private javax.swing.JMenuItem mniInsert;
     private javax.swing.JMenuItem mniRead;
     private javax.swing.JMenuItem mniUpdate;
     private javax.swing.JMenu mnuCRUD;
     private javax.swing.JMenuBar mnuMenuBar;
-    private javax.swing.JTextField txtImagePath;
     // End of variables declaration//GEN-END:variables
 }
