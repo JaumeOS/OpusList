@@ -1,6 +1,7 @@
 package opuslist;
 
 import com.google.gson.Gson;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -44,10 +45,8 @@ public class InsertDialog extends javax.swing.JDialog {
         lblAutor = new javax.swing.JLabel();
         btnInsert = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
-        btnImage = new javax.swing.JButton();
-        txtImageName = new javax.swing.JTextField();
+        btnSelectImage = new javax.swing.JButton();
         lblViewImage = new javax.swing.JLabel();
-        btnViewImage = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -87,19 +86,10 @@ public class InsertDialog extends javax.swing.JDialog {
             }
         });
 
-        btnImage.setText("Select Image");
-        btnImage.addActionListener(new java.awt.event.ActionListener() {
+        btnSelectImage.setText("Select Image");
+        btnSelectImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImageActionPerformed(evt);
-            }
-        });
-
-        txtImageName.setText("Image name");
-
-        btnViewImage.setText("View Image");
-        btnViewImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewImageActionPerformed(evt);
+                btnSelectImageActionPerformed(evt);
             }
         });
 
@@ -112,35 +102,27 @@ public class InsertDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtRegistre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                        .addComponent(lblTitol, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtTitol, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblAny, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblFormat, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblAutor, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtAny, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtFormat, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtAutor, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(txtImageName, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblImage))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRegistre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTitol, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTitol, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAny, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFormat, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAutor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAny, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFormat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAutor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 179, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblViewImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnImage)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnViewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(65, Short.MAX_VALUE))
+                            .addComponent(btnInsert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addComponent(lblViewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblImage)
+                    .addComponent(btnSelectImage))
+                .addGap(44, 47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +134,7 @@ public class InsertDialog extends javax.swing.JDialog {
                     .addComponent(txtRegistre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInsert))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblTitol)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,19 +154,11 @@ public class InsertDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblViewImage, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnViewImage)
-                            .addComponent(btnImage))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblImage)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(txtImageName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                .addGap(6, 6, 6)
+                .addComponent(lblImage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSelectImage)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,7 +170,8 @@ public class InsertDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtRegistreActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-       Obra newObra = new Obra(txtRegistre.getText(), txtTitol.getText(), txtAny.getText(), txtFormat.getText(), txtAutor.getText(), txtImageName.getText());
+       Obra newObra = new Obra(txtRegistre.getText(), txtTitol.getText(), txtAny.getText(), txtFormat.getText(), 
+               txtAutor.getText(), fileChooser.getSelectedFile().getName());
        mainForm.obras.add(newObra);
     }//GEN-LAST:event_btnInsertActionPerformed
 
@@ -211,24 +186,40 @@ public class InsertDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-            txtImageName.setText(fileChooser.getSelectedFile().getName());
-    }//GEN-LAST:event_btnImageActionPerformed
-
-    private void btnViewImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewImageActionPerformed
-        String imageName = txtImageName.getText();
-        MainForm mainForm = new MainForm();
-        try {
-            BufferedImage bufferedImage = ImageIO.read(new File(System.getProperty("user.home") + "\\AppData\\Local\\OpusList\\images\\" + imageName));
-            ImageIcon icon = mainForm.resizeImageIcon(bufferedImage, lblViewImage.getWidth(), lblViewImage.getHeight());
-            lblViewImage.setIcon(icon);
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+    private void btnSelectImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectImageActionPerformed
+        int returnValue = fileChooser.showDialog(this, "Open");
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                BufferedImage profileBufferedImage = ImageIO.read(fileChooser.getSelectedFile());;
+                BufferedImage resizedBufferedImage = resizeImageIcon(profileBufferedImage, lblViewImage.getWidth(), lblViewImage.getHeight());
+                lblViewImage.setIcon(new ImageIcon(resizedBufferedImage));
+                //profileImageChoosen = true;                
+            }
+            catch(IOException ioe) {
+                ioe.printStackTrace();
+            }
         }
-    }//GEN-LAST:event_btnViewImageActionPerformed
+    }//GEN-LAST:event_btnSelectImageActionPerformed
 
+    public static BufferedImage resizeImageIcon (BufferedImage originalImage, int desiredWidth, int desiredHeight) {
+        int newHeight = 0;    
+        int newWidth = 0;
+        float aspectRatio = (float)originalImage.getWidth() / originalImage.getHeight();
+        if (originalImage.getWidth() > originalImage.getHeight()) {
+            newWidth = desiredWidth;
+            newHeight = Math.round( desiredWidth / aspectRatio);                
+        }
+        else {
+            newHeight = desiredHeight;
+            newWidth = Math.round(desiredHeight * aspectRatio);
+        }
+        Image resultingImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        BufferedImage outputImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
+        outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
+        
+        return outputImage;
+    }
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        
     }//GEN-LAST:event_formWindowOpened
@@ -276,10 +267,9 @@ public class InsertDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnImage;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnViewImage;
+    private javax.swing.JButton btnSelectImage;
     private javax.swing.JLabel lblAny;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblFormat;
@@ -290,7 +280,6 @@ public class InsertDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtAny;
     private javax.swing.JTextField txtAutor;
     private javax.swing.JTextField txtFormat;
-    private javax.swing.JTextField txtImageName;
     private javax.swing.JTextField txtRegistre;
     private javax.swing.JTextField txtTitol;
     // End of variables declaration//GEN-END:variables

@@ -29,43 +29,31 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtRegistre" alignment="0" pref="92" max="32767" attributes="0"/>
-                      <Component id="lblTitol" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTitol" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lblAny" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblFormat" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAutor" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAny" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtFormat" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtAutor" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="txtImageName" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="lblImage" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnSave" min="-2" pref="73" max="-2" attributes="0"/>
-                          <Component id="btnInsert" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRegistre" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="lblTitol" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTitol" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="lblAny" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFormat" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAutor" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAny" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="txtFormat" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="txtAutor" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="179" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblViewImage" alignment="1" min="-2" pref="222" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnImage" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnViewImage" min="-2" pref="104" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnInsert" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="btnSave" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="lblViewImage" min="-2" pref="170" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="lblImage" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSelectImage" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="65" max="32767" attributes="0"/>
+              <EmptySpace min="44" pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,7 +68,7 @@
                   <Component id="btnInsert" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="lblTitol" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -103,23 +91,11 @@
                   </Group>
                   <Component id="lblViewImage" min="-2" pref="175" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnViewImage" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnImage" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblImage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
-                      <Component id="txtImageName" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="lblImage" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnSelectImage" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -179,28 +155,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnImage">
+    <Component class="javax.swing.JButton" name="btnSelectImage">
       <Properties>
         <Property name="text" type="java.lang.String" value="Select Image"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImageActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectImageActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtImageName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Image name"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblViewImage">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnViewImage">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View Image"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewImageActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblImage">
       <Properties>
